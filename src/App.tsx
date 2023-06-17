@@ -1,5 +1,11 @@
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from './styles/theme'
+import { Products } from './pages/Products'
+
 export function App() {
   return (
-    <h1>Hello world</h1>
+    <ThemeProvider theme={defaultTheme} >
+      <Products />
+    </ThemeProvider>
   )
 }
