@@ -16,6 +16,13 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.background};
     color: ${(props) => props.theme.colors['base-title']};
     -webkit-font-smoothing: antialiased;
+
+    @media (max-width: 1024px) {
+      font-size: 0.9375rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 0.875rem
+    }
   }
 
   body, input, textarea, button {
