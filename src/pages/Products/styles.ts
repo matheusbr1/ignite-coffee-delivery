@@ -12,7 +12,7 @@ export const BackgroundImage = styled.div`
   background-image: url('introBackground.svg');
   background-size: cover;
   background-position: center;
-  opacity: 0.85;
+  opacity: 0.6;
   mix-blend-mode: multiply;
   z-index: -1;
 `;
@@ -86,4 +86,10 @@ export const IconBackgroundCircle = styled.div<IconBackgroundCircleProps>`
   border-radius: 1000px;
   height: 2rem;
   width: 2rem;
+`
+
+export const ProductsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem
 `

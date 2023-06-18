@@ -6,16 +6,19 @@ import {
   IconBackgroundCircle,
   InfosContainer,
   BackgroundImage,
-  IntroInfosGrid
+  IntroInfosGrid,
+  ProductsGrid
 } from "./styles";
 
 import CoffeeImage from '../../assets/coffee.svg'
 import { defaultTheme } from "../../styles/theme";
+import { COFFEES } from '../../data/coffees';
+import { ProductCard } from '../../components/ProductCard';
 
 export function Products() {
   return (
     <ProductsContainer>
-      <BackgroundImage />
+      {/* <BackgroundImage /> */}
 
       <IntroSectionContainer>
         <InfosContainer>
@@ -73,6 +76,12 @@ export function Products() {
           <img src={CoffeeImage} />
         </div>
       </IntroSectionContainer>
+
+      <ProductsGrid>
+        {COFFEES.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </ProductsGrid>
     </ProductsContainer>
   )
 }

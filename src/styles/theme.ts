@@ -23,18 +23,18 @@ export const defaultTheme = {
       l: '2rem', // 32px
       m: '1.5rem', // 24px
       s: '1.25rem', // 20px
-      xs: '1,125rem' // 18px
+      xs: '1.125rem' // 18px
     },
     text: {
       l: '1.25rem', // 20px
       m: '1rem', // 16px
-      s: '0,875rem', // 14px
+      s: '0.875rem', // 14px
       xs: '0.75rem' // 12px
     },
     button: {
       g: '0,875rem', // 14px
       m: '0.75rem' // 12px
     },
-    tag: '0,625rem' // 10px
+    chip: '0.625rem' // 10px
   }
 } as const
