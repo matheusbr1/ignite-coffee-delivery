@@ -79,6 +79,8 @@ export function Products() {
         </div>
       </IntroSectionContainer>
 
+      <h2 className='coffess-title' >Nossos cafés</h2>
+
       <ProductsGrid>
         {COFFEES.map(product => (
           <ProductCard key={product.id} product={product} />

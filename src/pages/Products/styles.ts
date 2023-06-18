@@ -2,6 +2,15 @@ import styled from 'styled-components'
 
 export const ProductsContainer = styled.div`
   margin-bottom: 6.25rem;
+
+  .coffess-title {
+    margin-bottom: 3.5rem;
+    font-family: 'Baloo 2';
+    font-weight: 800;
+    font-size: ${props => props.theme.typography.title.l};
+    line-height: 130%;
+    color: ${props => props.theme.colors['base-subtitle']};
+  }
 `
 
 export const BackgroundImage = styled.div`
@@ -20,7 +29,7 @@ export const BackgroundImage = styled.div`
 
 export const IntroSectionContainer = styled.section`
   width: 100%;
-  padding: 3rem 0 5.375rem 0;
+  padding: 3.75rem 0;
   display: flex;
   justify-content: center;
   gap: 3.5rem;

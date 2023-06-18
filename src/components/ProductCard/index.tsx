@@ -23,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
         ))}
       </div>
 
-      <h2 className="product-name" >{product.name}</h2>
+      <h3 className="product-name" >{product.name}</h3>
       <p className="product-description" >{product.description}</p>
 
       <footer className="footer-actions" >
