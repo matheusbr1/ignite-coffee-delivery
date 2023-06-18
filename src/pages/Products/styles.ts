@@ -20,14 +20,23 @@ export const BackgroundImage = styled.div`
 
 export const IntroSectionContainer = styled.section`
   width: 100%;
-  padding: 5.375rem 0rem;
+  padding: 3rem 0 5.375rem 0;
   display: flex;
   justify-content: center;
   gap: 3.5rem;
-  
-  img {
-    width: 100%;
+
+  .image-container  {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+      width: 100%;
+      max-width: 476px;
+    }
   }
+  
 
   @media (max-width: ${props => props.theme.breakpoints.desk.medium}) {
     flex-direction: column-reverse;
@@ -48,26 +57,31 @@ export const InfosContainer = styled.div`
     align-items: center;
   }
 
-  h1 {
-    font-weight: 800;
-    font-size: ${props => props.theme.typography.title.xl};
-    line-height: 130%;
-    color: ${props => props.theme.colors['base-title']};
-    margin-bottom: 1rem;
-   
-    @media (max-width: ${props => props.theme.breakpoints.mobile.medium}) {
-      font-size: ${props => props.theme.typography.title.l};
-    }
-  }
-
-  h2 {
-    font-style: normal;
-    font-weight: 400;
-    font-size: ${props => props.theme.typography.text.l};
-    line-height: 130%;
-    color: ${props => props.theme.colors['base-subtitle']};
-    font-stretch: 100;
+  .titles {
     margin-bottom: 4.125rem;
+    max-width: 37.5rem;
+
+    h1 {
+      font-family: 'Baloo 2';
+      font-weight: 800;
+      font-size: ${props => props.theme.typography.title.xl};
+      line-height: 130%;
+      color: ${props => props.theme.colors['base-title']};
+      margin-bottom: 1rem;
+    
+      @media (max-width: ${props => props.theme.breakpoints.mobile.medium}) {
+        font-size: ${props => props.theme.typography.title.l};
+      }
+    }
+
+    h2 {
+      font-style: normal;
+      font-weight: 400;
+      font-size: ${props => props.theme.typography.text.l};
+      line-height: 130%;
+      color: ${props => props.theme.colors['base-subtitle']};
+      font-stretch: 100;
+    }
   }
 `
 

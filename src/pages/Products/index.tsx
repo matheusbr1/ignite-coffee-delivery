@@ -22,8 +22,10 @@ export function Products() {
 
       <IntroSectionContainer>
         <InfosContainer>
-          <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-          <h2>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</h2>
+          <div className='titles' >
+            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+            <h2>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</h2>
+          </div>
 
           <IntroInfosGrid>
             <div className='intro-infos-grid-item' >
@@ -72,7 +74,7 @@ export function Products() {
           </IntroInfosGrid>
         </InfosContainer>
 
-        <div>
+        <div className='image-container' >
           <img src={CoffeeImage} />
         </div>
       </IntroSectionContainer>
