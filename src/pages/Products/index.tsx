@@ -18,7 +18,7 @@ import { ProductCard } from '../../components/ProductCard';
 export function Products() {
   return (
     <ProductsContainer>
-      {/* <BackgroundImage /> */}
+      <BackgroundImage />
 
       <IntroSectionContainer>
         <InfosContainer>

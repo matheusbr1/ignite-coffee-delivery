@@ -26,7 +26,11 @@ export const LocationInfo = styled.div`
     font-weight: 400;
     font-size: ${props => props.theme.typography.text.s}
     line-height: 130%;
-    color: ${props => props.theme.colors["purple-dark"]}
+    color: ${props => props.theme.colors["purple-dark"]};
+
+    @media (max-width: ${props => props.theme.breakpoints.mobile.small}) {
+      display: none;
+    }
   }
 `
 

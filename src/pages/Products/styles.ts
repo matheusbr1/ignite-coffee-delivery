@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const ProductsContainer = styled.div`
+  margin-bottom: 6.25rem;
 `
 
 export const BackgroundImage = styled.div`
@@ -23,10 +24,19 @@ export const IntroSectionContainer = styled.section`
   display: flex;
   justify-content: center;
   gap: 3.5rem;
+  
+  img {
+    width: 100%;
+  }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${props => props.theme.breakpoints.desk.medium}) {
     flex-direction: column-reverse;
     align-items: center;
+    text-align: center;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile.medium}) {
+    padding: 3rem 0rem;
   }
 `
 
@@ -34,12 +44,20 @@ export const InfosContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: ${props => props.theme.breakpoints.desk.medium}}) {
+    align-items: center;
+  }
+
   h1 {
     font-weight: 800;
     font-size: ${props => props.theme.typography.title.xl};
     line-height: 130%;
     color: ${props => props.theme.colors['base-title']};
     margin-bottom: 1rem;
+   
+    @media (max-width: ${props => props.theme.breakpoints.mobile.medium}) {
+      font-size: ${props => props.theme.typography.title.l};
+    }
   }
 
   h2 {
@@ -58,6 +76,10 @@ export const IntroInfosGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
   width: fit-content;
+
+  @media (max-width: ${props => props.theme.breakpoints.tablet.medium}) {
+    grid-template-columns: 1fr;
+  }
 
   .intro-infos-grid-item {
     display: flex;
@@ -91,5 +113,17 @@ export const IconBackgroundCircle = styled.div<IconBackgroundCircleProps>`
 export const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem
+  gap: 2rem;
+
+  @media (max-width: ${props => props.theme.breakpoints.desk.medium}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.desk.small}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.tablet.medium}) {
+    grid-template-columns:  1fr;
+  }
 `

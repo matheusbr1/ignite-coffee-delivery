@@ -1,4 +1,17 @@
 export const defaultTheme = {
+  breakpoints: {
+    desk: {
+      medium: '1180px',
+      small: '940px'
+    },
+    tablet: {
+      medium: '768px'
+    },
+    mobile: {
+      medium: '475px',
+      small: '375px'
+    }
+  },
   colors: {
     'yellow-dark': '#C47F17',
     'yellow': '#DBAC2C',

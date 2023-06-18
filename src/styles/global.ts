@@ -16,12 +16,14 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.background};
     color: ${(props) => props.theme.colors['base-title']};
     -webkit-font-smoothing: antialiased;
+  }
 
+  html {
     @media (max-width: 1024px) {
-      font-size: 0.9375rem;
+      font-size: 93.75%;
     }
     @media (max-width: 768px) {
-      font-size: 0.875rem
+      font-size: 87.5%;
     }
   }
 
