@@ -10,10 +10,16 @@ export const ProductCounterContainer = styled.div`
   border-radius: 6px;
   margin-right: 0.5rem;
 
+  transition: all 0.2s;
+
   span {
     font-size: ${props => props.theme.typography.text.m};
     line-height: 130%;
     text-align: center;
     color: ${props => props.theme.colors['base-title']};
+  }
+
+  svg:hover {
+    fill: ${props => props.theme.colors['purple-dark']}
   }
 `

@@ -6,7 +6,7 @@ export const Container = styled.div`
 `
 
 export const Content = styled.div`
-  max-width: 1440px;
+  max-width: 1366px;
   padding: 0 3rem;
   width: 100%;
 `
