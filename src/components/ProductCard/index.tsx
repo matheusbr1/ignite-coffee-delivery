@@ -1,8 +1,9 @@
 import { ICoffee } from "../../interfaces/coffee"
 import { defaultTheme } from "../../styles/theme"
 import { currencyFormatter } from "../../utils/currencyFormatter"
+import { ProductCounter } from "../ProductCounter"
 import { ProductCardContainer } from "./styles"
-import { Minus, Plus, ShoppingCartSimple } from '@phosphor-icons/react'
+import { ShoppingCartSimple } from '@phosphor-icons/react'
 
 interface ProductCardProps {
   product: ICoffee
@@ -29,17 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <footer className="footer-actions" >
         <p className="product-price" >{price}</p>
 
-        <div className='product-counter' >
-          <button>
-            <Minus color={defaultTheme.colors.purple} />
-          </button>
-
-          <span>1</span>
-
-          <button>
-            <Plus color={defaultTheme.colors.purple} />
-          </button>
-        </div>
+        <ProductCounter />
 
         <button className="cart-button" >
           <ShoppingCartSimple
