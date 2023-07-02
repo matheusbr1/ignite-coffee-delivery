@@ -21,6 +21,62 @@ export const CompleteYourOrder = styled.section`
   flex: 4;
 `
 
+export const OrderPayment = styled.section`
+  .card {
+    background: ${props => props.theme.colors['base-card']};
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .titles {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+
+    .payment-title {
+      color: ${props => props.theme.colors['base-subtitle']};
+      font-size: ${props => props.theme.typography.text.m};
+      font-weight: 400;
+      line-height: 130%
+    }
+
+    .payment-subtitle {
+      color: ${props => props.theme.colors['base-text']};
+      font-size: ${props => props.theme.typography.text.s};
+      font-weight: 400;
+      line-height: 130%;
+    }
+  }
+
+  .payment-methods {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 6px;
+      background: ${props => props.theme.colors['base-button']};
+      span {
+        color: ${props => props.theme.colors['base-text']};
+        font-size: ${props => props.theme.typography.button.m};
+        line-height: 160%;
+        text-transform: uppercase;
+        margin-left: 0.75rem;
+      }
+    }
+  }
+`
+
 export const SelectedCoffees = styled.section`
   flex: 3;
 
