@@ -19,9 +19,10 @@ export const CheckoutContainer = styled.main`
 
 export const CompleteYourOrder = styled.section`
   flex: 4;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-export const OrderPayment = styled.section`
   .card {
     background: ${props => props.theme.colors['base-card']};
     border-radius: 6px;
@@ -33,27 +34,56 @@ export const OrderPayment = styled.section`
     padding: 2rem;
     gap: 2rem;
   }
-  
+
   .titles {
     display: flex;
     gap: 0.5rem;
     width: 100%;
 
-    .payment-title {
+    .complete-order-title {
       color: ${props => props.theme.colors['base-subtitle']};
       font-size: ${props => props.theme.typography.text.m};
       font-weight: 400;
       line-height: 130%
     }
 
-    .payment-subtitle {
+    .complete-order-subtitle {
       color: ${props => props.theme.colors['base-text']};
       font-size: ${props => props.theme.typography.text.s};
       font-weight: 400;
       line-height: 130%;
     }
   }
+`
 
+export const OrderAddress = styled.section`
+  form {
+    width: 100%;
+
+    .full {
+      width: 100%;
+    }
+
+    .w60 {
+      width: 60px;
+    }
+
+    div {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid ${props => props.theme.colors['base-button']};
+      background:${props => props.theme.colors['base-input']};
+    }
+  }
+`
+
+export const OrderPayment = styled.section`
   .payment-methods {
     display: flex;
     gap: 1rem;
@@ -90,7 +120,6 @@ export const SelectedCoffees = styled.section`
     justify-content: center;
     padding: 2rem;
   }
-
  
   .selected-product-card {
     display: flex;

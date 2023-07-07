@@ -3,12 +3,13 @@ import { ProductCounter } from "../../components/ProductCounter"
 import { COFFEES } from "../../data/coffees"
 import { defaultTheme } from "../../styles/theme"
 import { currencyFormatter } from "../../utils/currencyFormatter"
-import { Trash, CurrencyDollar, CreditCard, Bank, Money } from '@phosphor-icons/react'
+import { Trash, CurrencyDollar, CreditCard, Bank, Money, MapPinLine } from '@phosphor-icons/react'
 import {
   CheckoutContainer,
   CompleteYourOrder,
   ConfirmOrderButton,
   Divider,
+  OrderAddress,
   OrderPayment,
   SelectedCoffees
 } from "./styles"
@@ -23,13 +24,43 @@ export function Checkout() {
           Complete seu pedido
         </h1>
 
+        <OrderAddress>
+          <div className='card' >
+            <div className='titles'>
+              <MapPinLine size={22} color={defaultTheme.colors['yellow-dark']} />
+              <div>
+                <h2 className="complete-order-title" >Endereço de Entrega</h2>
+                <h3 className="complete-order-subtitle" >Informe o endereço onde deseja receber seu pedido</h3>
+              </div>
+            </div>
+
+            <form action="">
+              <div>
+                <input type="text" placeholder='CEP' />
+              </div>
+              <div>
+                <input type="text" placeholder='Rua' className='full' />
+              </div>
+              <div>
+                <input type="text" placeholder='Número' />
+                <input type="text" placeholder='Complemento (opcional)' className='full' />
+              </div>
+              <div>
+                <input type="text" placeholder='Bairro' />
+                <input type="text" placeholder='Cidade' className='full' />
+                <input type="text" placeholder='UF' className='w60' />
+              </div>
+            </form>
+          </div>
+        </OrderAddress>
+
         <OrderPayment>
           <div className='card' >
             <div className='titles'>
               <CurrencyDollar size={22} color={defaultTheme.colors.purple} />
               <div>
-                <h2 className="payment-title" >Pagamento</h2>
-                <h3 className="payment-subtitle" >O pagamento é feito na entrega. Escolha a forma que deseja pagar</h3>
+                <h2 className="complete-order-title" >Pagamento</h2>
+                <h3 className="complete-order-subtitle" >O pagamento é feito na entrega. Escolha a forma que deseja pagar</h3>
               </div>
             </div>
 
