@@ -3,9 +3,12 @@ import styled from 'styled-components'
 export const CheckoutContainer = styled.main`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 2rem;
   padding: 3rem 0;
+
+  @media(max-width: ${props => props.theme.breakpoints.desk.small}) {
+    flex-direction: column;
+  }
 
   .title {
     font-family: 'Baloo 2';
@@ -19,9 +22,12 @@ export const CheckoutContainer = styled.main`
 
 export const CompleteYourOrder = styled.section`
   flex: 4;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
   .card {
     background: ${props => props.theme.colors['base-card']};
@@ -66,12 +72,19 @@ export const OrderAddress = styled.section`
 
     .w60 {
       width: 60px;
+      @media(max-width: ${props => props.theme.breakpoints.tablet.medium}) {
+        width: 100%;
+      }
     }
 
     div {
       margin-bottom: 1rem;
       display: flex;
       gap: 1rem;
+
+      @media(max-width: ${props => props.theme.breakpoints.tablet.medium}) {
+        flex-direction: column;
+      }
     }
 
     input {
@@ -88,6 +101,10 @@ export const OrderPayment = styled.section`
     display: flex;
     gap: 1rem;
     width: 100%;
+
+    @media(max-width: ${props => props.theme.breakpoints.tablet.medium}) {
+      flex-direction: column;
+    }
 
     button {
       flex: 1;
