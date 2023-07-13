@@ -15,15 +15,15 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Products />
+    element: <Layout><Products /></Layout>
   },
   {
     path: "/checkout",
-    element: <Checkout />
+    element: <Layout><Checkout /></Layout>
   },
   {
     path: "/order-confirmation",
-    element: <ConfirmedOrder />
+    element: <Layout><ConfirmedOrder /></Layout>
   },
 ])
 
@@ -31,11 +31,8 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme} >
       <CartProvider>
-        <Layout>
-          <RouterProvider router={router} />
-        </Layout>
+        <RouterProvider router={router} />
       </CartProvider>
-
       <GlobalStyle />
     </ThemeProvider>
   )

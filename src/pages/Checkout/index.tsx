@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { ProductCounter } from "../../components/ProductCounter"
 import { COFFEES } from "../../data/coffees"
 import { defaultTheme } from "../../styles/theme"
@@ -13,10 +13,20 @@ import {
   OrderPayment,
   SelectedCoffees
 } from "./styles"
-
-const SELECTED_COFFEES = COFFEES.slice(0, 3)
+import { CartContext } from '../../context/CartContext'
 
 export function Checkout() {
+  const [quantity, setQuantity] = useState(1)
+  const { products } = useContext(CartContext)
+
+  const handleIncreaseQuantity = useCallback(() => {
+    setQuantity(quantity => quantity + 1)
+  }, [])
+
+  const handleDecreaseQuantity = useCallback(() => {
+    setQuantity(quantity => Math.max(quantity - 1, 0))
+  }, [])
+
   return (
     <CheckoutContainer>
       <CompleteYourOrder>
@@ -89,7 +99,7 @@ export function Checkout() {
         </h1>
 
         <div className="card">
-          {SELECTED_COFFEES.map(product => {
+          {products.map(product => {
             const price = currencyFormatter().format(product.price)
 
             return (
@@ -100,7 +110,11 @@ export function Checkout() {
                   <div className="central-content" >
                     <h3 className="product-name" >{product.name}</h3>
                     <div className="product-actions" >
-                      <ProductCounter />
+                      <ProductCounter.Root>
+                        <ProductCounter.DecreaseButton onClick={handleDecreaseQuantity} />
+                        <ProductCounter.Label>{quantity}</ProductCounter.Label>
+                        <ProductCounter.IncreseButton onClick={handleIncreaseQuantity} />
+                      </ProductCounter.Root>
                       <button className="remove-product-button" >
                         <Trash size={16} color={defaultTheme.colors.purple} />
                         <span>Remover</span>
