@@ -1,9 +1,6 @@
-import React, { useCallback, useContext, useState } from 'react'
-import { ProductCounter } from "../../components/ProductCounter"
-import { COFFEES } from "../../data/coffees"
+import React, { useContext } from 'react'
 import { defaultTheme } from "../../styles/theme"
-import { currencyFormatter } from "../../utils/currencyFormatter"
-import { Trash, CurrencyDollar, CreditCard, Bank, Money, MapPinLine } from '@phosphor-icons/react'
+import { CurrencyDollar, CreditCard, Bank, Money, MapPinLine } from '@phosphor-icons/react'
 import {
   CheckoutContainer,
   CompleteYourOrder,
@@ -14,18 +11,10 @@ import {
   SelectedCoffees
 } from "./styles"
 import { CartContext } from '../../context/CartContext'
+import { CheckoutProductCard } from '../../components/CheckoutProductCard'
 
 export function Checkout() {
-  const [quantity, setQuantity] = useState(1)
   const { products } = useContext(CartContext)
-
-  const handleIncreaseQuantity = useCallback(() => {
-    setQuantity(quantity => quantity + 1)
-  }, [])
-
-  const handleDecreaseQuantity = useCallback(() => {
-    setQuantity(quantity => Math.max(quantity - 1, 0))
-  }, [])
 
   return (
     <CheckoutContainer>
@@ -100,31 +89,9 @@ export function Checkout() {
 
         <div className="card">
           {products.map(product => {
-            const price = currencyFormatter().format(product.price)
-
             return (
               <React.Fragment key={product.id} >
-                <div className="selected-product-card" >
-                  <img src={`coffees/${product.imageName}.png`} />
-
-                  <div className="central-content" >
-                    <h3 className="product-name" >{product.name}</h3>
-                    <div className="product-actions" >
-                      <ProductCounter.Root>
-                        <ProductCounter.DecreaseButton onClick={handleDecreaseQuantity} />
-                        <ProductCounter.Label>{quantity}</ProductCounter.Label>
-                        <ProductCounter.IncreseButton onClick={handleIncreaseQuantity} />
-                      </ProductCounter.Root>
-                      <button className="remove-product-button" >
-                        <Trash size={16} color={defaultTheme.colors.purple} />
-                        <span>Remover</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <p className="product-price" >{price}</p>
-                </div>
-
+                <CheckoutProductCard product={product} />
                 <Divider />
               </React.Fragment>
             )
