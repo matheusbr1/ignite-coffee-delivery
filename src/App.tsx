@@ -5,6 +5,7 @@ import { Layout } from './layout'
 import { Products } from './pages/Products'
 import { Checkout } from './pages/Checkout'
 import { ConfirmedOrder } from './pages/ConfirmedOrder'
+import { CartProvider } from './context/CartContext'
 
 import {
   createBrowserRouter,
@@ -29,9 +30,11 @@ const router = createBrowserRouter([
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme} >
-      <Layout>
-        <RouterProvider router={router} />
-      </Layout>
+      <CartProvider>
+        <Layout>
+          <RouterProvider router={router} />
+        </Layout>
+      </CartProvider>
 
       <GlobalStyle />
     </ThemeProvider>
