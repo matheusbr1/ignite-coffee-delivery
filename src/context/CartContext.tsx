@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from 'react'
+import React, { createContext, useState, useCallback, useMemo } from 'react'
 import { ICoffee } from '../interfaces/coffee'
 
 interface ICartContext {
@@ -6,6 +6,9 @@ interface ICartContext {
   cartQuantity: number
   addProduct: (product: ICartProduct) => void
   removeProduct: (id: number) => void
+  increaseProductQuantity: (id: number) => void
+  decreaseProductQuantity: (id: number) => void
+  productsTotal: number
 }
 
 export const CartContext = createContext({} as ICartContext)
@@ -36,12 +39,43 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     })
   }, [])
 
+  const increaseProductQuantity = useCallback((id: number) => {
+    setProducts(currentProducts => {
+      return currentProducts.map(product => {
+        if (product.id === id) return {
+          ...product, quantity: product.quantity + 1
+        }
+        return product
+      })
+    })
+  }, [])
+
+  const decreaseProductQuantity = useCallback((id: number) => {
+    setProducts(currentProducts => {
+      return currentProducts.map(product => {
+        if (product.id === id) return {
+          ...product, quantity: Math.max(product.quantity - 1, 1)
+        }
+        return product
+      })
+    })
+  }, [])
+
+  const productsTotal = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + product.price * product.quantity
+    }, 0)
+  }, [products])
+
   return (
     <CartContext.Provider value={{
       products,
       addProduct,
       removeProduct,
-      cartQuantity: products.length
+      cartQuantity: products.length,
+      decreaseProductQuantity,
+      increaseProductQuantity,
+      productsTotal
     }} >
       {children}
     </CartContext.Provider>

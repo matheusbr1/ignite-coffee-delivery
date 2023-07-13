@@ -15,9 +15,15 @@ export function TopBar() {
     navigate('/checkout')
   }, [])
 
+  const handleNavigateToProducts = useCallback(() => {
+    navigate('/')
+  }, [])
+
   return (
     <TopBarContainer>
-      <img src={Logo} alt="Coffee Delivery" />
+      <button onClick={handleNavigateToProducts}  >
+        <img src={Logo} alt="Coffee Delivery" />
+      </button>
 
       <div className="infos-wrapper" >
         <LocationInfo>

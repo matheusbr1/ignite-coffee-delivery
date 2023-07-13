@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useCallback } from 'react'
 import { defaultTheme } from "../../styles/theme"
 import { CurrencyDollar, CreditCard, Bank, Money, MapPinLine } from '@phosphor-icons/react'
 import {
@@ -12,9 +12,23 @@ import {
 } from "./styles"
 import { CartContext } from '../../context/CartContext'
 import { CheckoutProductCard } from '../../components/CheckoutProductCard'
+import { useNavigate } from 'react-router-dom'
+import { currencyFormatter } from '../../utils/currencyFormatter'
+
+const DELIVERY_TAX = 3.50
 
 export function Checkout() {
-  const { products } = useContext(CartContext)
+  const { products, cartQuantity, productsTotal } = useContext(CartContext)
+
+  const navigate = useNavigate()
+
+  const handleNavigateToConfirmedOrder = useCallback(() => {
+    navigate('/order-confirmation')
+  }, [])
+
+  const formatedDeliveryTax = currencyFormatter().format(DELIVERY_TAX)
+  const formatedProductsTotal = currencyFormatter().format(productsTotal)
+  const formatedTotal = currencyFormatter().format(productsTotal + DELIVERY_TAX)
 
   return (
     <CheckoutContainer>
@@ -88,35 +102,41 @@ export function Checkout() {
         </h1>
 
         <div className="card">
-          {products.map(product => {
-            return (
-              <React.Fragment key={product.id} >
-                <CheckoutProductCard product={product} />
-                <Divider />
+          {
+            !cartQuantity
+              ? <p>Selecione produtos e continue a sua compra!</p>
+              : <React.Fragment>
+                {products.map(product => {
+                  return (
+                    <React.Fragment key={product.id} >
+                      <CheckoutProductCard product={product} />
+                      <Divider />
+                    </React.Fragment>
+                  )
+                })}
+
+                <div className="summary">
+                  <div>
+                    <p className='info' >Total de itens</p>
+                    <p className='value' >{formatedProductsTotal}</p>
+                  </div>
+                  <div>
+                    <p className='info' >Entrega</p>
+                    <p className='value' >{formatedDeliveryTax}</p>
+                  </div>
+                  <div>
+                    <p className='info total' >Total</p>
+                    <p className='value total' >{formatedTotal}</p>
+                  </div>
+                </div>
+
+                <ConfirmOrderButton onClick={handleNavigateToConfirmedOrder} >
+                  Confirmar pedido
+                </ConfirmOrderButton>
               </React.Fragment>
-            )
-          })}
-
-          <div className="summary">
-            <div>
-              <p className='info' >Total de itens</p>
-              <p className='value' >R$ 29,70</p>
-            </div>
-            <div>
-              <p className='info' >Entrega</p>
-              <p className='value' >R$ 3,50</p>
-            </div>
-            <div>
-              <p className='info total' >Total</p>
-              <p className='value total' >R$ 33,20</p>
-            </div>
-          </div>
-
-          <ConfirmOrderButton>
-            Confirmar pedido
-          </ConfirmOrderButton>
+          }
         </div>
       </SelectedCoffees>
-    </CheckoutContainer >
+    </CheckoutContainer>
   )
 } 

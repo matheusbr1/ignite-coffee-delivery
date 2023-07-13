@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
   }, [])
 
   const handleDecreaseQuantity = useCallback(() => {
-    setQuantity(quantity => Math.max(quantity - 1, 0))
+    setQuantity(quantity => Math.max(quantity - 1, 1))
   }, [])
 
   return (

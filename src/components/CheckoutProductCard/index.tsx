@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react"
+import { useCallback, useContext } from "react"
 import { ICoffee } from "../../interfaces/coffee"
 import { ProductCounter } from "../ProductCounter"
 import { Trash } from "@phosphor-icons/react"
 import { defaultTheme } from "../../styles/theme"
 import { currencyFormatter } from "../../utils/currencyFormatter"
 import { CheckoutProductCardContainer } from "./styles"
+import { CartContext } from "../../context/CartContext"
 
 interface ICartProduct extends ICoffee {
   quantity: number
@@ -15,14 +16,22 @@ interface CheckoutProductCardProps {
 }
 
 export function CheckoutProductCard({ product }: CheckoutProductCardProps) {
-  const [quantity, setQuantity] = useState(1)
+  const {
+    removeProduct,
+    increaseProductQuantity,
+    decreaseProductQuantity
+  } = useContext(CartContext)
 
   const handleIncreaseQuantity = useCallback(() => {
-    setQuantity(quantity => quantity + 1)
+    increaseProductQuantity(product.id)
   }, [])
 
   const handleDecreaseQuantity = useCallback(() => {
-    setQuantity(quantity => Math.max(quantity - 1, 0))
+    decreaseProductQuantity(product.id)
+  }, [])
+
+  const hadleRemoveProductFromCart = useCallback(() => {
+    removeProduct(product.id)
   }, [])
 
   const price = currencyFormatter().format(product.price)
@@ -36,10 +45,10 @@ export function CheckoutProductCard({ product }: CheckoutProductCardProps) {
         <div className="product-actions" >
           <ProductCounter.Root>
             <ProductCounter.DecreaseButton onClick={handleDecreaseQuantity} />
-            <ProductCounter.Label>{quantity}</ProductCounter.Label>
+            <ProductCounter.Label>{product.quantity}</ProductCounter.Label>
             <ProductCounter.IncreseButton onClick={handleIncreaseQuantity} />
           </ProductCounter.Root>
-          <button className="remove-product-button" >
+          <button className="remove-product-button" onClick={hadleRemoveProductFromCart} >
             <Trash size={16} color={defaultTheme.colors.purple} />
             <span>Remover</span>
           </button>

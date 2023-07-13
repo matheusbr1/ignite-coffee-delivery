@@ -6,6 +6,10 @@ export const TopBarContainer = styled.nav`
   align-items: center;
   justify-content: space-between;
 
+  > button {
+    box-shadow: unset;
+  }
+
   .infos-wrapper {
     display: flex;
     gap: 1rem;
