@@ -41,7 +41,7 @@ export function TopBar() {
             color={defaultTheme.colors["yellow-dark"]}
             weight="fill"
           />
-          <div>
+          <div className="cartQuantity" >
             {cartQuantity}
           </div>
         </CartButton>

@@ -46,4 +46,27 @@ export const CartButton = styled.button`
   gap: 4px;
   background: ${props => props.theme.colors["yellow-light"]};
   border-radius: 6px;
+  position: relative;
+
+  .cartQuantity {
+    position: absolute;
+    right: -8.345px;
+    top: -8px;
+
+    color: ${props => props.theme.colors.white};
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.72px;
+
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1000px;
+    background: ${props => props.theme.colors["yellow-dark"]};
+  }
 `
