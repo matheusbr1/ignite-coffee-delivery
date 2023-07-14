@@ -6,10 +6,13 @@ import { ProductCounter } from "../ProductCounter"
 import { ProductCardContainer } from "./styles"
 import { ShoppingCartSimple } from '@phosphor-icons/react'
 import { CartContext } from '../../context/CartContext'
+import toast from 'react-hot-toast'
 
 interface ProductCardProps {
   product: ICoffee
 }
+
+const notify = (message: string) => toast.success(message)
 
 export function ProductCard({ product }: ProductCardProps) {
   const price = currencyFormatter().format(product.price)
@@ -18,6 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const handleAddProductToCart = useCallback(() => {
     addProduct({ ...product, quantity })
+    notify('Produto adicionado ao carrinho!')
   }, [quantity])
 
   const handleIncreaseQuantity = useCallback(() => {

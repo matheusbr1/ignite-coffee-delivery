@@ -6,6 +6,7 @@ import { Products } from './pages/Products'
 import { Checkout } from './pages/Checkout'
 import { ConfirmedOrder } from './pages/ConfirmedOrder'
 import { CartProvider } from './context/CartContext'
+import { Toaster } from 'react-hot-toast'
 
 import {
   createBrowserRouter,
@@ -33,6 +34,7 @@ export function App() {
       <CartProvider>
         <RouterProvider router={router} />
       </CartProvider>
+      <Toaster />
       <GlobalStyle />
     </ThemeProvider>
   )

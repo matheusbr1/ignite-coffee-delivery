@@ -6,6 +6,7 @@ import { defaultTheme } from "../../styles/theme"
 import { currencyFormatter } from "../../utils/currencyFormatter"
 import { CheckoutProductCardContainer } from "./styles"
 import { CartContext } from "../../context/CartContext"
+import toast from 'react-hot-toast'
 
 interface ICartProduct extends ICoffee {
   quantity: number
@@ -14,6 +15,8 @@ interface ICartProduct extends ICoffee {
 interface CheckoutProductCardProps {
   product: ICartProduct
 }
+
+const notify = (message: string) => toast.success(message)
 
 export function CheckoutProductCard({ product }: CheckoutProductCardProps) {
   const {
@@ -32,6 +35,7 @@ export function CheckoutProductCard({ product }: CheckoutProductCardProps) {
 
   const hadleRemoveProductFromCart = useCallback(() => {
     removeProduct(product.id)
+    notify('Produto removido do carrinho!')
   }, [])
 
   const price = currencyFormatter().format(product.price)
