@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 export const CheckoutContainer = styled.main`
   display: flex;
   justify-content: space-between;
@@ -78,9 +79,10 @@ export const OrderAddress = styled.section`
     }
 
     div {
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       display: flex;
       gap: 1rem;
+   
 
       @media(max-width: ${props => props.theme.breakpoints.tablet.medium}) {
         flex-direction: column;
@@ -200,4 +202,16 @@ export const ConfirmOrderButton = styled.button`
   &:hover {
     background: ${props => props.theme.colors['yellow-dark']};
   }
+`
+
+export const FieldError = styled.p`
+  color: #CC0000;
+  font-size: ${props => props.theme.typography.text.xs};
+  position: absolute;
+  top: 3.25rem;
+  width: max-content;
+`
+
+export const InputContainer = styled.div`
+  position: relative;
 `
