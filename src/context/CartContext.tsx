@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback, useMemo } from 'react'
 import { ICoffee } from '../interfaces/coffee'
+import { Address } from '../pages/Checkout'
 
 interface ICartContext {
   products: ICartProduct[]
@@ -9,6 +10,8 @@ interface ICartContext {
   increaseProductQuantity: (id: number) => void
   decreaseProductQuantity: (id: number) => void
   productsTotal: number
+  address: Address
+  updateAddress: (address: Address) => void
 }
 
 export const CartContext = createContext({} as ICartContext)
@@ -67,6 +70,20 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }, 0)
   }, [products])
 
+  const [address, setAddress] = useState<Address>({
+    CEP: '',
+    city: '',
+    complement: '',
+    neighborhood: '',
+    number: 0,
+    state: '',
+    street: ''
+  })
+
+  const updateAddress = useCallback((address: Address) => {
+    setAddress(address)
+  }, [])
+
   return (
     <CartContext.Provider value={{
       products,
@@ -75,7 +92,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       cartQuantity: products.length,
       decreaseProductQuantity,
       increaseProductQuantity,
-      productsTotal
+      productsTotal,
+      address,
+      updateAddress
     }} >
       {children}
     </CartContext.Provider>

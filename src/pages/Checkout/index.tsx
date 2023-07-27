@@ -44,10 +44,10 @@ const addressSchema = z.object({
   state: z.string(),
 })
 
-type Address = z.infer<typeof addressSchema>
+export type Address = z.infer<typeof addressSchema>
 
 export function Checkout() {
-  const { products, cartQuantity, productsTotal } = useContext(CartContext)
+  const { products, cartQuantity, productsTotal, updateAddress } = useContext(CartContext)
 
   const {
     register,
@@ -67,7 +67,9 @@ export function Checkout() {
 
   const navigate = useNavigate()
 
-  const handleNavigateToConfirmedOrder = useCallback(() => {
+  const handleConfirmOrder = useCallback(() => {
+    const fields = getValues()
+    updateAddress(fields)
     navigate('/order-confirmation')
   }, [])
 
@@ -80,7 +82,6 @@ export function Checkout() {
   const handleFormSubmit = (fields: Address) => {
     console.log(fields)
   }
-
   interface AddressResponse {
     bairro: string
     localidade: string
@@ -101,8 +102,6 @@ export function Checkout() {
       if (!fields.CEP) return
 
       const { bairro, localidade, logradouro, uf } = await fetchAddress(fields.CEP)
-
-      console.log('fields', fields)
 
       setValue('neighborhood', bairro)
       setValue('city', localidade)
@@ -320,7 +319,7 @@ export function Checkout() {
                   </div>
                 </div>
 
-                <ConfirmOrderButton onClick={handleNavigateToConfirmedOrder} >
+                <ConfirmOrderButton onClick={handleConfirmOrder} >
                   Confirmar pedido
                 </ConfirmOrderButton>
               </React.Fragment>

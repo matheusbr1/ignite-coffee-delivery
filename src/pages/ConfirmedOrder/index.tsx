@@ -4,8 +4,12 @@ import {
   OrderInfoContainer,
 } from "./styles"
 import deliveryImage from '../../assets/delivery.svg'
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
 
 export function ConfirmedOrder() {
+  const { address } = useContext(CartContext)
+
   return (
     <ConfirmedOrderContainer>
       <div>
@@ -20,8 +24,8 @@ export function ConfirmedOrder() {
               <MapPin size={16} color="#fff" weight="fill" />
             </div>
             <div>
-              <p className="info-title" >Entrega em <strong>Rua João Daniel Martinelli, 102</strong></p>
-              <p className="info-title" >Farrapos - Porto Alegre, RS</p>
+              <p className="info-title" >Entrega em <strong>{address.street}, {address.number}</strong></p>
+              <p className="info-title" >{address.neighborhood} - {address.city}, {address.state}</p>
             </div>
           </div>
 
